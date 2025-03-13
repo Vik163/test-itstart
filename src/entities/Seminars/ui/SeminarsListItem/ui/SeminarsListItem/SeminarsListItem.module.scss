@@ -1,0 +1,77 @@
+.SeminarsListItem {
+   padding: 10px;
+   cursor: default;
+}
+
+.cardSkeleton {
+   padding: 15px;
+}
+
+.img {
+   width: 100%;
+   height: 270px;
+   object-fit: cover;
+   box-shadow: 1px 1px 3px var(--hint-redesigned);
+   border-radius: 5px;
+}
+
+.info {
+   height: 170px;
+   position: relative;
+
+   svg {
+      color: transparent;
+      stroke: var(--primary-color);
+   }
+}
+
+.infoSceleton {
+   margin-top: 10px;
+   height: 165px;
+}
+
+.title {
+   margin-top: 5px;
+   line-height: 20px;
+   height: 50px;
+   width: 240px;
+}
+
+.description {
+   width: 240px;
+}
+
+.date {
+   height: 100%;
+   line-height: 100%;
+   display: flex;
+   align-items: flex-end;
+   gap: 7px;
+}
+
+.editContainer {
+   position: absolute;
+   top: 8px;
+   right: 10px;
+
+   svg {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+         transform: scale(1.1);
+      }
+   }
+
+   .iconEdit {
+      border: 1px solid var(--primary-color);
+      border-radius: 3px;
+   }
+}
+
+.footer {
+   height: 15px;
+   padding: 0 10px;
+}
