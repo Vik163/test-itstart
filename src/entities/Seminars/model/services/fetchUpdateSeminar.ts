@@ -3,6 +3,7 @@ import type { Seminar } from '../types/seminar';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { $api } from '@/shared/api/api';
 
+// обновление. Возвращает обновленный элемент или ошибку
 export const fetchUpdateSeminar = createAsyncThunk<
    Seminar,
    Seminar,

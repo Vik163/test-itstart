@@ -12,7 +12,7 @@ import editor from '@/shared/assets/icons/edit-button.svg';
 import calendar from '@/shared/assets/icons/calendar-20-20.svg';
 import clock from '@/shared/assets/icons/clock.svg';
 import { Modal } from '@/shared/ui/Modal';
-import { ModalFormBasket } from '@/entities/Seminars/ui/SeminarsListItem/ui/ModalFormBasket';
+import { ModalFormBasket } from '../ModalFormBasket/ModalFormBasket';
 import { fetchDeleteSeminar } from '../../../../model/services/fetchDeleteSeminar';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { seminarsActions } from '../../../../model/slices/seminarSlice';
@@ -25,7 +25,6 @@ import { fetchSeminars } from '../../../../model/services/fetchSeminars';
 export interface SeminarsListItemProps {
    className?: string;
    seminar: Seminar;
-   target?: HTMLAttributeAnchorTarget;
 }
 
 export const SeminarsListItem = memo((props: SeminarsListItemProps) => {
@@ -35,12 +34,9 @@ export const SeminarsListItem = memo((props: SeminarsListItemProps) => {
    const [openBasket, setOpenBasket] = useState(false);
    const [openEditor, setOpenEditor] = useState(false);
 
+   // модалка удаления ==================
    function closeBasket() {
       setOpenBasket(false);
-   }
-
-   function closeEditor() {
-      setOpenEditor(false);
    }
 
    async function deleteSeminar() {
@@ -51,6 +47,12 @@ export const SeminarsListItem = memo((props: SeminarsListItemProps) => {
          dispatch(fetchSeminars());
          closeBasket();
       }
+   }
+   // -------------------------------------
+
+   // модалка редактирования ==============
+   function closeEditor() {
+      setOpenEditor(false);
    }
 
    async function updateSeminar(data: UpdateData) {
@@ -67,6 +69,7 @@ export const SeminarsListItem = memo((props: SeminarsListItemProps) => {
          closeEditor();
       }
    }
+   // ------------------------------------------
 
    return (
       <Card className={classNames(cls.SeminarsListItem, {}, [className])}>

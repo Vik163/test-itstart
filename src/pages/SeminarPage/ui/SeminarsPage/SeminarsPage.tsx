@@ -14,6 +14,7 @@ export const SeminarsPage = (props: SeminarsPageProps) => {
    const { className } = props;
    const dispatch = useAppDispatch();
 
+   // первоначальный запрос
    useEffect(() => {
       dispatch(fetchSeminars());
    });

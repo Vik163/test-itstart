@@ -14,6 +14,7 @@ if (!container) {
 
 const root = createRoot(container);
 
+// ErrorBoundary - перехватчик непредвиденных ошибок
 root.render(
    <StoreProvider>
       <ErrorBoundary>

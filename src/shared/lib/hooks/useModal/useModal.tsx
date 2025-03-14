@@ -12,6 +12,7 @@ interface UseModalProps {
    animationDelay: number;
 }
 
+// кастомный хук для обработки модалок. Добавляет варианты закрытия, анимацию и ленивую загрузку
 export function useModal({ animationDelay, isOpen, onClose }: UseModalProps) {
    const [isClosing, setIsClosing] = useState(false);
    const [isMounted, setIsMounted] = useState(false);

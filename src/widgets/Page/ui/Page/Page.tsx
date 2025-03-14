@@ -10,6 +10,7 @@ interface PageProps {
    onScrollEnd?: () => void;
 }
 
+// компонент обертка
 export const Page = memo((props: PageProps) => {
    const { className, children, onScrollEnd } = props;
    const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -22,12 +23,12 @@ export const Page = memo((props: PageProps) => {
    });
 
    return (
-      <main
+      <section
          ref={wrapperRef}
          className={classNames(cls.PageRedesigned, {}, [className])}
       >
          {children}
          {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
-      </main>
+      </section>
    );
 });

@@ -1,1 +1,0 @@
-export { ModalFormBasket } from './ModalFormBasket';

@@ -12,9 +12,6 @@ function getApiUrl(mode: BuildMode, apiUrl?: string) {
    if (apiUrl) {
       return apiUrl;
    }
-   if (mode === 'production') {
-      return 'http://pizzashop63.online/api';
-   }
 
    return 'http://127.0.0.1:8000';
 }

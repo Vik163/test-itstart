@@ -3,5 +3,5 @@ import axios from 'axios';
 // правильнее apiUrl = env.apiUrl || 'http://localhost:8000' - webpack.config
 
 export const $api = axios.create({
-   baseURL: __API__, // правильнее
+   baseURL: __API__,
 });

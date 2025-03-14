@@ -8,6 +8,7 @@ import {
 import { seminarsActions } from '../slices/seminarSlice';
 import { fetchSeminars } from './fetchSeminars';
 
+// Пагинация - добавление номера страницы и последующий запрос
 export const fetchNextSeminarsPage = createAsyncThunk<
    void,
    void,

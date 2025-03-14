@@ -12,7 +12,6 @@ interface SeminarsListProps {
    className?: string;
    seminars: Seminar[];
    isLoading?: boolean;
-   target?: HTMLAttributeAnchorTarget;
 }
 
 const getSkeletons = () =>
@@ -22,28 +21,15 @@ const getSkeletons = () =>
          <SeminarListItemSkeleton className={cls.card} key={index} />
       ));
 
+// карточки или скелетоны
 export const SeminarsList = memo((props: SeminarsListProps) => {
-   const { className, seminars, isLoading, target } = props;
-
-   if (!isLoading && !seminars.length) {
-      return (
-         <div
-            className={classNames(cls.seminarsListError, {}, [
-               className,
-               cls['small'],
-            ])}
-         >
-            <Text>Семинары не найдены</Text>
-         </div>
-      );
-   }
+   const { seminars, isLoading } = props;
 
    return (
       <HStack className={cls.SeminarsList} wrap="wrap" gap="32">
          {seminars.map((item) => (
             <SeminarsListItem
                seminar={item}
-               target={target}
                key={item.id}
                className={cls.card}
             />

@@ -2,6 +2,8 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { $api } from '@/shared/api/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+// удаление карточки
+// возвращает true или ошибку
 export const fetchDeleteSeminar = createAsyncThunk<
    boolean,
    number,

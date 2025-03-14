@@ -10,6 +10,7 @@ import { fetchDeleteSeminar } from '../services/fetchDeleteSeminar';
 import { fetchUpdateSeminar } from '../services/fetchUpdateSeminar';
 import { fetchSeminars } from '../services/fetchSeminars';
 
+// Нормализация данных
 const seminarsAdapter = createEntityAdapter({
    selectId: (seminar: Seminar) => seminar.id.toString(),
 });
@@ -20,7 +21,6 @@ export const getSeminars = seminarsAdapter.getSelectors<StateSchema>(
    (state) => state.seminars || seminarsAdapter.getInitialState(),
 );
 
-// Нормализация данных
 const semianarsSlice = createSlice({
    name: 'seminarsSlice',
    initialState: seminarsAdapter.getInitialState<SeminarsSchema>({
@@ -50,7 +50,7 @@ const semianarsSlice = createSlice({
             (state, { payload }: PayloadAction<Seminar[]>) => {
                state.isLoading = false;
                state.hasMore = payload.length >= state.limit;
-               seminarsAdapter.addMany(state, payload);
+               seminarsAdapter.addMany(state, payload); // добавляет
             },
          )
          .addCase(
@@ -66,7 +66,7 @@ const semianarsSlice = createSlice({
          })
          .addCase(fetchDeleteSeminar.fulfilled, (state) => {
             state.isLoadingModal = false;
-            seminarsAdapter.removeAll(state);
+            seminarsAdapter.removeAll(state); // удаляет все
          })
          .addCase(
             fetchDeleteSeminar.rejected,
@@ -83,7 +83,7 @@ const semianarsSlice = createSlice({
             fetchUpdateSeminar.fulfilled,
             (state, { payload }: PayloadAction<Seminar>) => {
                state.isLoadingModal = false;
-               seminarsAdapter.setOne(state, payload);
+               seminarsAdapter.setOne(state, payload); // меняет одну
             },
          )
          .addCase(

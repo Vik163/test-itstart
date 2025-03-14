@@ -10,22 +10,10 @@ export function createReduxStore(initialState?: StateSchema) {
       seminars: seminarsReducer,
    };
 
-   const extraArg: ThunkExtraArg = {
-      api: $api,
-   };
-
    const store = configureStore({
       reducer: rootReducers,
       devTools: __IS_DEV__,
       preloadedState: initialState,
-      // axios
-      // добавляем в thunk через extraArgument настройку axios 5_4 2min
-      middleware: (getDefaultMiddleware) =>
-         getDefaultMiddleware({
-            thunk: {
-               extraArgument: extraArg,
-            },
-         }).concat(),
    });
 
    return store;

@@ -5,6 +5,8 @@ export interface UseInfiniteScrollOptions {
    triggerRef: MutableRefObject<HTMLElement>;
    wrapperRef?: MutableRefObject<HTMLElement>;
 }
+
+// Бесконечный скролл на IntersectionObserver
 // https://misha.agency/javascript/intersection-observer-api.html
 export function useInfiniteScroll({
    callback,

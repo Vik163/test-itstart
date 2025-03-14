@@ -9,11 +9,10 @@ export interface ThunkExtraArg {
    api: AxiosInstance;
 }
 
-// thunkAPI - { rejectValue: string, extra: ThunkExtraArg }
+// thunkAPI - { rejectValue: string }
 // преобразуем
 // дженерик Т - тип ошибки
 export interface ThunkConfig<T> {
    rejectValue: T;
-   extra: ThunkExtraArg;
    state: StateSchema;
 }
