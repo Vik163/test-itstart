@@ -25,6 +25,7 @@ const semianarsSlice = createSlice({
    name: 'seminarsSlice',
    initialState: seminarsAdapter.getInitialState<SeminarsSchema>({
       isLoading: false,
+      isLoadingModal: false,
       error: undefined,
       ids: [],
       entities: {},
@@ -61,34 +62,34 @@ const semianarsSlice = createSlice({
          )
          .addCase(fetchDeleteSeminar.pending, (state) => {
             state.error = undefined;
-            state.isLoading = true;
+            state.isLoadingModal = true;
          })
          .addCase(fetchDeleteSeminar.fulfilled, (state) => {
-            state.isLoading = false;
+            state.isLoadingModal = false;
             seminarsAdapter.removeAll(state);
          })
          .addCase(
             fetchDeleteSeminar.rejected,
             (state, { payload }: PayloadAction<string | undefined>) => {
-               state.isLoading = false;
+               state.isLoadingModal = false;
                state.error = payload;
             },
          )
          .addCase(fetchUpdateSeminar.pending, (state) => {
             state.error = undefined;
-            state.isLoading = true;
+            state.isLoadingModal = true;
          })
          .addCase(
             fetchUpdateSeminar.fulfilled,
             (state, { payload }: PayloadAction<Seminar>) => {
-               state.isLoading = false;
+               state.isLoadingModal = false;
                seminarsAdapter.setOne(state, payload);
             },
          )
          .addCase(
             fetchUpdateSeminar.rejected,
             (state, { payload }: PayloadAction<string | undefined>) => {
-               state.isLoading = false;
+               state.isLoadingModal = false;
                state.error = payload;
             },
          );

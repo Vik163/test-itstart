@@ -12,7 +12,7 @@ import editor from '@/shared/assets/icons/edit-button.svg';
 import calendar from '@/shared/assets/icons/calendar-20-20.svg';
 import clock from '@/shared/assets/icons/clock.svg';
 import { Modal } from '@/shared/ui/Modal';
-import { ModalFormBasket } from '@/features/ModalFormBasket';
+import { ModalFormBasket } from '@/entities/Seminars/ui/SeminarsListItem/ui/ModalFormBasket';
 import { fetchDeleteSeminar } from '../../../../model/services/fetchDeleteSeminar';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { seminarsActions } from '../../../../model/slices/seminarSlice';
@@ -31,6 +31,7 @@ export interface SeminarsListItemProps {
 export const SeminarsListItem = memo((props: SeminarsListItemProps) => {
    const dispatch = useAppDispatch();
    const { className, seminar } = props;
+
    const [openBasket, setOpenBasket] = useState(false);
    const [openEditor, setOpenEditor] = useState(false);
 

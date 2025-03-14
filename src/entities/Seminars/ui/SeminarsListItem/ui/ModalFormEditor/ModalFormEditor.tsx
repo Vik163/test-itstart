@@ -4,6 +4,8 @@ import { Button } from '@/shared/ui/Button';
 import { FontSize, FontWeight, HeaderTagType, Text } from '@/shared/ui/Text';
 import { Input } from '@/shared/ui/Input';
 import type { UpdateData } from '../../../../model/types/updateData';
+import { useSelector } from 'react-redux';
+import { getSeminarsIsLoadingModal } from '../../../../model/selectors/seminarSelectors';
 
 interface ModalFormEditorProps {
    submit: (data: UpdateData) => void;
@@ -11,6 +13,8 @@ interface ModalFormEditorProps {
 
 export const ModalFormEditor = (props: ModalFormEditorProps) => {
    const { submit } = props;
+   const isLoadingModal = useSelector(getSeminarsIsLoadingModal);
+
    const [title, setTitle] = useState('');
    const [photo, setPhoto] = useState('');
    const [description, setDescription] = useState('');
@@ -88,7 +92,7 @@ export const ModalFormEditor = (props: ModalFormEditorProps) => {
                variant="outline"
                fullWidth
             >
-               Обновить
+               {isLoadingModal ? 'Обновление...' : 'Обновить'}
             </Button>
          </form>
       </div>

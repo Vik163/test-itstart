@@ -3,6 +3,7 @@ import { EntityState } from '@reduxjs/toolkit';
 
 export interface SeminarsSchema extends EntityState<Seminar, string> {
    isLoading?: boolean;
+   isLoadingModal?: boolean;
    error?: string;
 
    // pagination

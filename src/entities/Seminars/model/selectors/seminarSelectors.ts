@@ -2,6 +2,8 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getSeminarsIsLoading = (state: StateSchema) =>
    state.seminars?.isLoading || false;
+export const getSeminarsIsLoadingModal = (state: StateSchema) =>
+   state.seminars?.isLoadingModal || false;
 export const getSeminarsError = (state: StateSchema) => state.seminars?.error;
 export const getSeminarsNum = (state: StateSchema) => state.seminars?.page || 1;
 export const getSeminarsLimit = (state: StateSchema) =>

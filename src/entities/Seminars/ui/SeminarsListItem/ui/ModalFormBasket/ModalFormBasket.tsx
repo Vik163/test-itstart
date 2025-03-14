@@ -2,6 +2,8 @@ import { FormEvent } from 'react';
 import cls from './ModalFormBasket.module.scss';
 import { Button } from '@/shared/ui/Button';
 import { FontSize, FontWeight, HeaderTagType, Text } from '@/shared/ui/Text';
+import { useSelector } from 'react-redux';
+import { getSeminarsIsLoadingModal } from '../../../../model/selectors/seminarSelectors';
 
 interface ModalFormBasketProps {
    submit: () => void;
@@ -9,6 +11,7 @@ interface ModalFormBasketProps {
 
 export const ModalFormBasket = (props: ModalFormBasketProps) => {
    const { submit } = props;
+   const isLoadingModal = useSelector(getSeminarsIsLoadingModal);
 
    function onSubmit(e: FormEvent<HTMLFormElement>) {
       e.preventDefault();
@@ -32,7 +35,7 @@ export const ModalFormBasket = (props: ModalFormBasketProps) => {
                variant="outline"
                fullWidth
             >
-               Удалить
+               {isLoadingModal ? 'Удаление...' : 'Удалить'}
             </Button>
          </form>
       </div>
