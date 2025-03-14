@@ -4,7 +4,7 @@ import { Text } from '@/shared/ui/Text';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './SeminarsList.module.scss';
 import { HStack } from '@/shared/ui/Stack';
-import type { Seminar } from '../SeminarsListItem/model/types/seminar';
+import type { Seminar } from '../../model/types/seminar';
 import { SeminarListItemSkeleton } from '../SeminarsListItem/ui/SeminarsListItemSkeleton/SeminarsListItemSkeleton';
 import { SeminarsListItem } from '../SeminarsListItem/ui/SeminarsListItem/SeminarsListItem';
 

@@ -13,10 +13,8 @@ import { Text } from '../Text';
 
 type HTMLInputProps = Omit<
    InputHTMLAttributes<HTMLInputElement>,
-   'value' | 'onChange' | 'readOnly' | 'size'
+   'value' | 'onChange' | 'readOnly'
 >;
-
-type InputSize = 's' | 'm' | 'l';
 
 interface InputProps extends HTMLInputProps {
    className?: string;
@@ -27,7 +25,6 @@ interface InputProps extends HTMLInputProps {
    readonly?: boolean;
    addonLeft?: ReactNode;
    addonRight?: ReactNode;
-   size?: InputSize;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -42,7 +39,6 @@ export const Input = memo((props: InputProps) => {
       addonLeft,
       addonRight,
       label,
-      size = 'm',
       ...otherProps
    } = props;
    const ref = useRef<HTMLInputElement>(null);
@@ -75,9 +71,7 @@ export const Input = memo((props: InputProps) => {
    };
 
    const input = (
-      <div
-         className={classNames(cls.InputWrapper, mods, [className, cls[size]])}
-      >
+      <div className={classNames(cls.InputWrapper, mods, [className])}>
          <div className={cls.addonLeft}>{addonLeft}</div>
          <input
             ref={ref}

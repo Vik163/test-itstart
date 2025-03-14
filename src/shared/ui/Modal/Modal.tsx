@@ -6,6 +6,7 @@ import cls from './Modal.module.scss';
 import { Overlay } from '../Overlay/Overlay';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import closeIcon from '@/shared/assets/icons/closeIcon.svg';
 
 interface ModalProps {
    className?: string;
@@ -16,7 +17,7 @@ interface ModalProps {
    lazy?: boolean;
 }
 
-const ANIMATION_DELAY = 300;
+const ANIMATION_DELAY = 100;
 
 export const Modal = (props: ModalProps) => {
    const { className, children, isOpen, onClose, lazy } = props;
@@ -44,16 +45,25 @@ export const Modal = (props: ModalProps) => {
 
    return (
       <Portal>
-         <div
-            className={classNames(cls.Modal, mods, [className, cls.modalNew])}
-         >
-            <Overlay onClick={close} />
+         <div className={classNames(cls.Modal, mods, [])}>
+            <Overlay onClick={close} className={cls.overlay} />
             {/* <div className={cls.overlay} onClick={closeHandler}> */}
             <div
                className={cls.content}
                // onClick={onContentClick}
             >
-               {children}
+               {onClose && (
+                  <Button
+                     variant="clear"
+                     type="button"
+                     onClick={close}
+                     className={classNames(cls.closeBtn, {}, [className])}
+                  >
+                     <Icon className={cls.closeIcon} Svg={closeIcon} />
+                  </Button>
+               )}
+
+               <div className={cls.form}>{children}</div>
             </div>
             {/* </div> */}
          </div>

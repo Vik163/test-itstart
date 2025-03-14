@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
-import { SeminarsPageSchema } from '@/pages/SeminarPage/model/types/seminarPageSchema';
+import type { SeminarsSchema } from '@/entities/Seminars';
 
 export interface StateSchema {
-   seminars: SeminarsPageSchema;
+   seminars: SeminarsSchema;
 }
 
 export interface ThunkExtraArg {

@@ -1,13 +1,13 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { $api } from '@/shared/api/api';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
-import { seminarsPageReducer } from '@/pages/SeminarPage/model/slices/seminarPageSlice';
+import { seminarsReducer } from '@/entities/Seminars/model/slices/seminarSlice';
 
 export function createReduxStore(initialState?: StateSchema) {
    // В корневом редьюсере только обязательные
    // ReducersMapObject тип для корневого редьюсера
    const rootReducers: ReducersMapObject<StateSchema> = {
-      seminars: seminarsPageReducer,
+      seminars: seminarsReducer,
    };
 
    const extraArg: ThunkExtraArg = {

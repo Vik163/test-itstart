@@ -3,9 +3,8 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from '@/widgets/Page';
 import cls from './SeminarsPage.module.scss';
-import { fetchSeminars } from '../../model/services/fetchSeminars';
-import { fetchNextSeminarsPage } from '../../model/services/fetchNextSeminarsPage';
 import { SeminarsInfiniteList } from '../SeminarsInfiniteList/SeminarsInfiniteList';
+import { fetchSeminars, fetchNextSeminarsPage } from '@/entities/Seminars';
 
 interface SeminarsPageProps {
    className?: string;

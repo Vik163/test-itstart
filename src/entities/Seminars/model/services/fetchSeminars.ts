@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import type { Seminar } from '../../../../entities/Seminars/ui/SeminarsListItem/model/types/seminar';
 import {
-   getSeminarsPageLimit,
-   getSeminarsPageNum,
-} from '../selectors/seminarPageSelectors';
+   getSeminarsLimit,
+   getSeminarsNum,
+} from '../selectors/seminarSelectors';
+import type { Seminar } from '../types/seminar';
 
 export const fetchSeminars = createAsyncThunk<
    Seminar[],
@@ -13,8 +13,8 @@ export const fetchSeminars = createAsyncThunk<
    ThunkConfig<string>
 >('seminarsPage/fetchSeminars', async (_, thunkApi) => {
    const { extra, rejectWithValue, getState } = thunkApi;
-   const limit = getSeminarsPageLimit(getState());
-   const page = getSeminarsPageNum(getState());
+   const limit = getSeminarsLimit(getState());
+   const page = getSeminarsNum(getState());
 
    try {
       const response = await extra.api.get<Seminar[]>('/seminars', {

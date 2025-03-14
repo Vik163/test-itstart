@@ -1,7 +1,7 @@
 import type { Seminar } from '@/entities/Seminars';
 import { EntityState } from '@reduxjs/toolkit';
 
-export interface SeminarsPageSchema extends EntityState<Seminar, string> {
+export interface SeminarsSchema extends EntityState<Seminar, string> {
    isLoading?: boolean;
    error?: string;
 

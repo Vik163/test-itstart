@@ -1,102 +1,73 @@
 .Button {
-    cursor: pointer;
-    color: var(--text-redesigned);
-    padding: 6px 16px;
-    display: flex;
-    align-items: center;
+   cursor: pointer;
+   color: var(--text-redesigned);
+   padding: 6px 16px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 
-    &:hover {
-        color: var(--accent-redesigned);
+   &:hover {
+      color: var(--accent-redesigned);
 
-        .addonLeft svg, .addonRight svg {
-            color: var(--accent-redesigned);
-        }
-    }
+      .addonLeft svg,
+      .addonRight svg {
+         color: var(--accent-redesigned);
+      }
+   }
 }
 
 .withAddon {
-    padding: 0 16px;
+   padding: 0 16px;
 }
 
-.addonLeft, .addonRight {
-    display: flex;
+.addonLeft,
+.addonRight {
+   display: flex;
 }
 
-.addonRight svg, .addonLeft svg {
-    color: var(--hint-redesigned);
+.addonRight svg,
+.addonLeft svg {
+   color: var(--hint-redesigned);
 }
-
 
 .clear {
-    padding: 0;
-    border: none;
-    background: none;
-    outline: none;
+   padding: 0;
+   border: none;
+   background: none;
+   outline: none;
 }
 
 .filled {
-    background: var(--light-bg-redesigned);
-    border: none;
-    outline: none;
-    border-radius: 34px;
+   background: var(--light-bg-redesigned);
+   border: none;
+   outline: none;
+   border-radius: 34px;
 }
 
 .outline {
-    background: none;
-    border-radius: 34px;
+   background: none;
 
-    &:hover {
-        border: 2px solid var(--accent-redesigned);
-    }
+   &:hover {
+      border: 2px solid var(--accent-redesigned);
+   }
 
-    &.normal {
-        border: 2px solid var(--icon-redesigned);
-    }
+   &.normal {
+      border: 2px solid var(--primary-color);
+   }
 
-    &.error {
-        border: 2px solid var(--cancel-redesigned);
-    }
+   &.error {
+      border: 2px solid var(--cancel-redesigned);
+   }
 
-    &.success {
-        border: 2px solid var(--save-redesigned);
-    }
-}
-
-.square {
-    padding: 0;
-}
-
-.square.m {
-    width: var(--font-line-m);
-    height: var(--font-line-m);
-}
-
-.square.l {
-    width: var(--font-line-l);
-    height: var(--font-line-l);
-}
-
-.square.xl {
-    width: var(--font-line-xl);
-    height: var(--font-line-xl);
-}
-
-.m {
-    font: var(--font-m-redesigned);
-}
-
-.l {
-    font: var(--font-l-redesigned);
-}
-
-.xl {
-    font: var(--font-xl-redesigned);
+   &.success {
+      border: 2px solid var(--hint-redesigned);
+   }
 }
 
 .disabled {
-    opacity: 0.5;
+   opacity: 0.5;
 }
 
 .fullWidth {
-    width: 100%;
+   width: 100%;
 }

@@ -6,7 +6,6 @@ import { Card } from '@/shared/ui/Card';
 import { AppImage } from '@/shared/ui/AppImage';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import type { Seminar } from '../../model/types/seminar';
 import { Icon } from '@/shared/ui/Icon';
 import basket from '@/shared/assets/icons/basket.svg';
 import editor from '@/shared/assets/icons/edit-button.svg';
@@ -14,6 +13,14 @@ import calendar from '@/shared/assets/icons/calendar-20-20.svg';
 import clock from '@/shared/assets/icons/clock.svg';
 import { Modal } from '@/shared/ui/Modal';
 import { ModalFormBasket } from '@/features/ModalFormBasket';
+import { fetchDeleteSeminar } from '../../../../model/services/fetchDeleteSeminar';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { seminarsActions } from '../../../../model/slices/seminarSlice';
+import { fetchUpdateSeminar } from '../../../../model/services/fetchUpdateSeminar';
+import { ModalFormEditor } from '../ModalFormEditor/ModalFormEditor';
+import type { Seminar } from '../../../../model/types/seminar';
+import type { UpdateData } from '../../../../model/types/updateData';
+import { fetchSeminars } from '../../../../model/services/fetchSeminars';
 
 export interface SeminarsListItemProps {
    className?: string;
@@ -22,11 +29,42 @@ export interface SeminarsListItemProps {
 }
 
 export const SeminarsListItem = memo((props: SeminarsListItemProps) => {
+   const dispatch = useAppDispatch();
    const { className, seminar } = props;
    const [openBasket, setOpenBasket] = useState(false);
+   const [openEditor, setOpenEditor] = useState(false);
 
    function closeBasket() {
       setOpenBasket(false);
+   }
+
+   function closeEditor() {
+      setOpenEditor(false);
+   }
+
+   async function deleteSeminar() {
+      const res = await dispatch(fetchDeleteSeminar(seminar.id));
+      if (res) {
+         dispatch(seminarsActions.setPage(1));
+
+         dispatch(fetchSeminars());
+         closeBasket();
+      }
+   }
+
+   async function updateSeminar(data: UpdateData) {
+      const newSeminar: Seminar = {
+         id: seminar.id,
+         title: data.title || seminar.title,
+         photo: data.photo || seminar.photo,
+         description: data.description || seminar.description,
+         date: data.date || seminar.date,
+         time: data.time || seminar.time,
+      };
+      const res = await dispatch(fetchUpdateSeminar(newSeminar));
+      if (res.meta.requestStatus === 'fulfilled') {
+         closeEditor();
+      }
    }
 
    return (
@@ -81,17 +119,34 @@ export const SeminarsListItem = memo((props: SeminarsListItemProps) => {
                   onClick={() => setOpenBasket(true)}
                   Svg={basket}
                />
-               <Icon className={cls.iconEdit} Svg={editor} />
+               <Icon
+                  clickable
+                  className={cls.iconEdit}
+                  onClick={() => setOpenEditor(true)}
+                  Svg={editor}
+               />
             </VStack>
          </VStack>
-         <Modal
-            isOpen={openBasket}
-            onClose={closeBasket}
-            lazy
-            className={cls.modalBasket}
-         >
-            <ModalFormBasket />
-         </Modal>
+         {openBasket && (
+            <Modal
+               isOpen={openBasket}
+               onClose={closeBasket}
+               lazy
+               className={cls.closeIcon}
+            >
+               <ModalFormBasket submit={deleteSeminar} />
+            </Modal>
+         )}
+         {openEditor && (
+            <Modal
+               isOpen={openEditor}
+               onClose={closeEditor}
+               lazy
+               className={cls.closeIcon}
+            >
+               <ModalFormEditor submit={updateSeminar} />
+            </Modal>
+         )}
       </Card>
    );
 });
